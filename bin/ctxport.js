@@ -43,4 +43,13 @@ program
     require('../src/export').run();
   });
 
+program
+  .command('stats')
+  .description('Show project statistics (file count, context size)')
+  .action(async () => {
+    const { getStats, printStats } = require('../src/stats');
+    const stats = await getStats();
+    printStats(stats);
+  });
+
 program.parse(process.argv);
